@@ -463,6 +463,26 @@ h3 {
 .app .content-area > .main-content-area main .pages-navigation span a {
   color: #0000ff;
 }
+.app .content-area > .main-content-area main .actions {
+  font-size: 14px;
+  font-weight: 600;
+}
+.app .content-area > .main-content-area main .actions .action-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: #212837;
+}
+.app .content-area > .main-content-area main .actions .action-link .btn {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 30px;
+  background-color: #0000ff;
+  color: #fff;
+  font-weight: 600;
+  vertical-align: middle;
+}
 
 .sidebar {
   display: flex;

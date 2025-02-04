@@ -19,7 +19,14 @@
                             Manage Admins
                         </span>
                     </div>
-                    <!-- Table for displaying users -->
+                    <div class="actions">
+                        <a href="/admins/create" class="action-link">
+                            Click here to register new admin..
+                            <span class="btn">
+                                +
+                            </span>
+                        </a>
+                    </div>
                     <table class="users-table">
                         <thead>
                             <tr>

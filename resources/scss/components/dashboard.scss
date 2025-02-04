@@ -41,6 +41,26 @@
             }
           }
         }
+        .actions {
+          font-size: 14px;
+          font-weight: 600;
+          .action-link {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            color: var.$text-color-base;
+            .btn {
+              display: inline-block;
+              margin-left: 5px;
+              padding: 1px 5px;
+              border-radius: 4px;
+              font-size: 30px;
+              background-color: #0000ff;
+              color: #fff;
+              font-weight: 600;
+              vertical-align: middle;
+            }
+          }
+        }
       }
     }
   }
