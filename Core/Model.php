@@ -55,16 +55,13 @@ class Model extends Database
         return array_map(fn($result) => new static($result), $results);
     }
 
-    // Save a new record (create)
-    public function save(): bool
+    // Save a new record (create) and return the last inserted record
+    public function save()
     {
         $table = static::$table;
 
-        // Filter the attributes based on $fillable and $guarded
-        $attributes = get_object_vars($this);
-
-        // Filter based on fillable and guarded properties
-        $attributes = array_filter($attributes, function ($key) {
+        // Filter attributes based on $fillable and $guarded
+        $attributes = array_filter(get_object_vars($this), function ($key) {
             return in_array($key, $this->fillable) && !in_array($key, $this->guarded);
         }, ARRAY_FILTER_USE_KEY);
 
@@ -72,13 +69,17 @@ class Model extends Database
             throw new \Exception('No valid attributes to save.');
         }
 
+        // Prepare columns and placeholders for the query
         $columns = implode(', ', array_keys($attributes));
         $placeholders = implode(', ', array_map(fn($key) => ":{$key}", array_keys($attributes)));
 
-        // Prepare and execute the query
-        $query = "INSERT INTO {$table} ({$columns}) VALUES ({$placeholders})";
-        return $this->query($query, $attributes)->rowCount() > 0;
+        // Execute the insert query
+        $this->query("INSERT INTO {$table} ({$columns}) VALUES ({$placeholders})", $attributes);
+
+        // Retrieve and return the last inserted record using the find() method
+        return static::find($this->getConnection()->lastInsertId());
     }
+
 
     // Update an existing record
     public function update(array $data): bool
