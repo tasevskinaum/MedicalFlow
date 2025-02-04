@@ -1,0 +1,40 @@
+@mixin slide-in($duration: 0.5s, $timing: ease-in-out) {
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  animation: slideIn $duration $timing;
+}
+
+@mixin fade-in($duration: 0.5s, $timing: ease-in) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  animation: fadeIn $duration $timing;
+}
+
+@mixin fade-in-with-visibility($duration: 0.5s, $timing: ease-in-out) {
+  @keyframes fadeInWithVisibility {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  animation: fadeInWithVisibility $duration $timing forwards;
+}

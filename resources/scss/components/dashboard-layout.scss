@@ -1,0 +1,47 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.app {
+  .content-area {
+    display: flex;
+    & > aside {
+      width: 400px;
+      &.expand,
+      &:hover {
+        @include mix.laptop-m-styles {
+          width: 40%;
+        }
+        @include mix.tablet-styles {
+          width: 100%;
+        }
+      }
+      @include mix.laptop-m-styles {
+        width: 95px;
+      }
+    }
+    & > .main-content-area {
+      flex: 1;
+      max-height: 100vh;
+      overflow-y: scroll;
+      main {
+        padding: 14px;
+        & > * {
+          &:not(:last-child) {
+            margin-bottom: 14px;
+          }
+        }
+        .pages-navigation {
+          span {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            a {
+              color: #0000ff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@use "../../../abstracts/variables" as var;
+@use "../../../abstracts/mixins" as mix;
+@use "sass:math";
+
+.create-admin {
+  & > * {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+  h1 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  form {
+    width: 30%;
+    @include mix.laptop-m-styles {
+      width: 50%;
+    }
+    @include mix.tablet-styles {
+      width: 100%;
+    }
+  }
+}

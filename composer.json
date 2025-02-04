@@ -1,0 +1,22 @@
+{
+  "name": "tasev/clinic-manager",
+  "autoload": {
+    "psr-4": {
+      "Core\\": "Core/",
+      "App\\": "App/"
+    },
+    "files": [
+      "config/app.php",
+      "functions.php",
+      "config/database.php",
+      "routes/web.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "tasevskinaum",
+      "email": "tasevskinaum@yahoo.com"
+    }
+  ],
+  "require": {}
+}

@@ -1,0 +1,66 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.home-page-hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)),
+    url("/storage/images/homepage-intro-section-bg.jpg") center/cover no-repeat;
+
+  height: calc(100vh - 65px);
+  .home-page-hero-section-wrapper {
+    @extend %container;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .inner {
+      display: flex;
+      .content {
+        display: flex;
+        flex-direction: column;
+        flex: 0 1 50%;
+        & > * {
+          &:not(:last-child) {
+            margin-bottom: 20px;
+          }
+        }
+        h1 {
+          font-size: 46px;
+          text-transform: uppercase;
+          line-height: 46px;
+          @include mix.tablet-styles {
+            font-size: 24px;
+            line-height: unset;
+          }
+        }
+        .btn {
+          width: fit-content;
+          border: 1px solid #1b3f73;
+          border-radius: 33px;
+          padding: 7px;
+          text-align: center;
+          transition: 0.3s all ease;
+          font-size: 18px;
+          color: #1b3f73;
+          &:hover {
+            background-color: #1b3f73;
+            color: var.$background-color-base;
+          }
+          @include mix.tablet-styles {
+            width: auto;
+            color: white;
+            background-color: #1b3f73;
+          }
+        }
+        @include mix.laptop-m-styles {
+          flex: 0 1 100%;
+        }
+        @include mix.tablet-styles {
+          text-align: center;
+        }
+      }
+    }
+  }
+  @include mix.laptop-m-styles {
+    min-height: calc(100vh - 58.9833px);
+  }
+}

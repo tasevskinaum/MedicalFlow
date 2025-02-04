@@ -1,0 +1,172 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.navigation-container {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  box-shadow: 0 0 0.625rem grey;
+  transition: 0.3s all ease;
+  background-color: #ebeef4;
+  &.active {
+    @include mix.laptop-m-styles {
+      background-color: #ebeef4;
+    }
+  }
+  .navigation-brand {
+    .brand {
+      font-weight: 600;
+      font-size: 24px;
+      color: #1b3f73;
+    }
+  }
+  .navbar-toggler {
+    display: none;
+    width: var.$gutter-base * 1.5;
+    height: var.$gutter-base * 1.166;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    &:hover {
+      cursor: pointer;
+    }
+    span {
+      &.bar {
+        display: block;
+        width: 100%;
+        height: 4px;
+        background-color: #1b3f73;
+        border-radius: math.div(var.$gutter-base, 3);
+        transition: 0.3s ease;
+        &:not(:last-child) {
+          margin-bottom: math.div(var.$gutter-base, 5);
+        }
+      }
+    }
+    &.active {
+      span {
+        &.bar {
+          background-color: #1b3f73;
+          &.bar_ {
+            transform: rotate(45deg);
+            margin-bottom: -13px;
+          }
+          &.bar__ {
+            opacity: 0;
+          }
+          &.bar___ {
+            transform: rotate(-45deg);
+          }
+        }
+      }
+    }
+    @include mix.laptop-m-styles {
+      display: block;
+    }
+    @include mix.mobile-l-styles {
+      width: var.$gutter-base * 1.166;
+    }
+  }
+  .navigation-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    margin-left: 80px;
+    transition: 0.3s all ease;
+    &.active {
+      @include mix.laptop-m-styles {
+        background-color: #ebeef4;
+        left: 50%;
+        width: 50%;
+      }
+      @include mix.tablet-styles {
+        left: 0%;
+        width: 100%;
+      }
+    }
+    .main-navigation {
+      .navbar-nav {
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: nowrap;
+        .nav-item {
+          &:not(:last-child) {
+            margin-right: 15px;
+            @include mix.laptop-m-styles {
+              margin-right: 0;
+              margin-bottom: 30px;
+            }
+          }
+          .nav-link {
+            display: block;
+            font-size: 18px;
+            color: #1b3f73;
+            transition: 0.15s all ease-in;
+            font-weight: 600;
+            &:hover {
+              transform: scale(1.15);
+            }
+            @include mix.laptop-m-styles {
+              font-size: 24px;
+            }
+          }
+        }
+        @include mix.laptop-m-styles {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+    .actions {
+      .request-an-appointment {
+        border: 1px solid #1b3f73;
+        border-radius: 33px;
+        padding: 7px;
+        transition: 0.3s all ease;
+        text-align: center;
+        &:hover {
+          background-color: #1b3f73;
+          .btn {
+            color: var.$background-color-base;
+          }
+        }
+        .btn {
+          transition: 0.3s all ease;
+          font-size: 18px;
+          color: #1b3f73;
+          @include mix.laptop-m-styles {
+            font-size: 24px;
+            font-weight: 600;
+          }
+        }
+        @include mix.laptop-m-styles {
+          border-width: 2px;
+        }
+      }
+    }
+    @include mix.laptop-m-styles {
+      position: fixed;
+      top: 58.9833px;
+      left: 100%;
+      bottom: 0;
+      z-index: 1;
+      margin-left: 0;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px 24px;
+      & > * {
+        &:not(:last-child) {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+  @include mix.laptop-m-styles {
+    justify-content: space-between;
+  }
+}

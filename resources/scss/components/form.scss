@@ -1,0 +1,46 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+form {
+  .form-control {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    input {
+      background-color: white;
+      border-radius: 7px;
+      border: 1px solid rgb(116, 116, 116);
+      outline: none;
+      padding: 6px;
+      width: 100%;
+      font-family: "Libre Franklin", sans-serif;
+      color: #2d2e32;
+      font-weight: 600;
+      &[type="submit"] {
+        background-color: #0000ff;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: white;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .fdb {
+    font-size: 12px;
+    top: -4px;
+    position: relative;
+    font-weight: 600;
+    &.error {
+      color: red;
+    }
+  }
+}
