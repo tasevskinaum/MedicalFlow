@@ -16,12 +16,12 @@
                         <span>
                             <a href="/dashboard">Dashboard</a>
                             >
-                            Manage Admins
+                            Manage Doctors
                         </span>
                     </div>
                     <div class="actions">
-                        <a href="/admins/create" class="action-link">
-                            Click here to register new admin..
+                        <a href="/doctors/create" class="action-link">
+                            Click here to create doctor profile..
                             <span class="btn">
                                 +
                             </span>
@@ -38,16 +38,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($users as $user): ?>
+                            <?php foreach ($doctors as $doctor): ?>
                                 <tr>
-                                    <td data-label="Name"><?php echo $user->name; ?></td>
-                                    <td data-label="Email"><?php echo $user->email; ?></td>
-                                    <td data-label="Username"><?php echo $user->username; ?></td>
-                                    <td data-label="Role"><?php echo \App\Http\Models\Role::where('id', '=', $user->role_id)[0]->name ?></td>
+                                    <td data-label="Name"><?php echo $doctor->name; ?></td>
+                                    <td data-label="Email"><?php echo $doctor->email; ?></td>
+                                    <td data-label="Username"><?php echo $doctor->username; ?></td>
+                                    <td data-label="Role"><?php echo \App\Http\Models\Role::where('id', '=', $doctor->role_id)[0]->name ?></td>
                                     <td data-label="Actions">
-                                        <a href="/admins/edit/<?php echo $user->id; ?>" class="btn btn-edit">Edit</a>
+                                        <a href="/doctors/edit/<?php echo $doctor->id; ?>" class="btn btn-edit">Edit</a>
                                         <!-- Delete Form -->
-                                        <form action="/admins/destroy/<?php echo $user->id; ?>" method="POST" style="display:inline;">
+                                        <form action="/doctors/destroy/<?php echo $doctor->id; ?>" method="POST" style="display:inline;">
                                             <input type="hidden" name="_method" value="DELETE"> <!-- Spoof DELETE method -->
                                             <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
                                         </form>
@@ -73,7 +73,6 @@
     <script type="module" src="/resources/js/top-bar.js"></script>
     <script type="module" src="/resources/js/sidebar.js"></script>
     <script type="module" src="/resources/js/alert/success-unsucsess.js"></script>
-
 </body>
 
 </html>

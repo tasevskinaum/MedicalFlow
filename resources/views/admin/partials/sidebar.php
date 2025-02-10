@@ -18,12 +18,16 @@
                 </li>
             <?php }
             ?>
-            <li class="sidebar-nav-item">
-                <a href="" class="sidebar-link">
-                    <span>Users</span>
-                    <i class='bx bx-user'></i>
-                </a>
-            </li>
+            <?php
+            if (!(auth()->user()->role_id != 2)) { ?>
+                <li class="sidebar-nav-item">
+                    <a href="/doctors" class="sidebar-link">
+                        <span>Manage Doctors</span>
+                        <i class='bx bx-first-aid'></i>
+                    </a>
+                </li>
+            <?php }
+            ?>
             <li class="sidebar-nav-item">
                 <a href="" class="sidebar-link">
                     <span>Users</span>

@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Models\DoctorProfile;
 use App\Http\Models\Role;
 use App\Http\Models\User;
 use Core\Request;
 use Core\Session;
 use Core\Validator;
 
-class AdminController extends Controller
+class DoctorController extends Controller
 {
     public function index()
     {
-        $adminRole = Role::where('name', '=', 'admin')[0];
+        $doctorRole = Role::where('name', '=', 'doctor')[0];
 
-        return view('admin.manage-admins.index', [
-            'users' => User::where('role_id', '=', $adminRole->id)
+        return view('doctor.manage-doctor.index', [
+            'doctors' => User::where('role_id', '=', $doctorRole->id)
         ]);
     }
 
     public function create()
     {
-        return view('admin.manage-admins.create');
+        return view('doctor.manage-doctor.create');
     }
 
     public function store(Request $request)
@@ -43,41 +44,45 @@ class AdminController extends Controller
         $validator = new Validator($data, $rules);
 
         if (!$validator->validate()) {
-            return redirect('/admins/create');
+            return redirect('/doctors/create');
         }
 
         $user = new User();
-        $user->role_id = 2;
+        $user->role_id = Role::where('name', '=', 'doctor')[0]->id;
         $user->name = $data['name'];
         $user->username = $data['username'];
         $user->email = $data['email'];
         $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
 
-        $user->save();
+        if ($doctor = $user->save()) {
+            $doctorProfile = new DoctorProfile();
+            $doctorProfile->user_id = $doctor->id;
+            $doctorProfile->save();
+        }
 
-        Session::flash('success', 'The admin was successfully registered!');
+        Session::flash('success', 'Doctor was successfully created!');
 
-        return redirect('/admins');
+        return redirect('/doctors');
     }
 
     public function edit(User $user)
     {
-        if (!$user->isRole('admin')) {
-            return redirect('/admins');
+        if (!$user->isRole('doctor')) {
+            return redirect('/doctors');
         }
 
         $user = clone $user;
         unset($user->password);
 
-        return view('admin.manage-admins.edit', [
+        return view('doctor.manage-doctor.edit', [
             'user' => $user
         ]);
     }
 
     public function update(Request $request, User $user)
     {
-        if (!$user->isRole('admin')) {
-            return redirect('/admins');
+        if (!$user->isRole('doctor')) {
+            return redirect('/doctors');
         }
 
         $data = [
@@ -96,26 +101,28 @@ class AdminController extends Controller
         $validator = new Validator($data, $rules);
 
         if (!$validator->validate()) {
-            return redirect('/admins/edit/' . $user->id);
+            return redirect('/doctors/edit/' . $user->id);
         }
 
         $user->update($data);
 
         Session::flash('success', 'Changes saved successfully!');
 
-        return redirect('/admins');
+        return redirect('/doctors');
     }
-
 
     public function destroy(User $user)
     {
-        if (!$user->isRole('admin')) {
-            return redirect('/admins');
+        if (!$user->isRole('doctor')) {
+            return redirect('/doctors');
         }
 
+        DoctorProfile::where('user_id', '=', $user->id)[0]->delete();
+
         $user->delete();
+
         Session::flash('success', 'Admin account has been successfully deleted!');
 
-        return redirect('/admins');
+        return redirect('/doctors');
     }
 }

@@ -22,7 +22,7 @@ CREATE TABLE users (
 INSERT INTO users(role_id, name, username, email, password)
 VALUES (1, "Naum Tasevski", "tasevskinaum", "tasevskinaum@yahoo.com", "$2y$10$MECK5MRpIDVQtafi.O4gxuEstzDkyyzz2lc3.HK2P8bmHCJ7p0m0W");
 
-CREATE TABLE doctors(
+CREATE TABLE doctor_profile(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	user_id INT UNSIGNED,
 	short_bio LONGTEXT,

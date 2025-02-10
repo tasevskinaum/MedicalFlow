@@ -9,11 +9,8 @@
 @use "./admin-dashboard/sidebar.scss";
 @use "./admin-dashboard/header.scss";
 
-@use "./form.scss";
-
 @use "./admin-dashboard/manage-admin/create.scss";
-
-@use "./admin-dashboard/manage-admin/index.scss";
-
 //
 @use "./sweetalert.scss";
+@use "./form.scss";
+@use "./table.scss";
