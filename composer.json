@@ -18,5 +18,7 @@
       "email": "tasevskinaum@yahoo.com"
     }
   ],
-  "require": {}
+  "require": {
+    "nesbot/carbon": "^3.8"
+  }
 }
