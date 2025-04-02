@@ -8,6 +8,9 @@ class Model extends Database
     protected static string $primaryKey = 'id'; // Primary key column name
     protected array $fillable = []; // Fields that can be mass assigned
     protected array $guarded = []; // Fields that cannot be mass assigned
+    protected array $queryConditions = [];
+    protected array $groupBy = [];
+    protected array $excludedColumns = [];
 
     public function __construct(array $attributes = [])
     {
@@ -15,6 +18,11 @@ class Model extends Database
         foreach ($attributes as $key => $value) {
             $this->{$key} = $value;
         }
+    }
+
+    public static function queryBuilder(): static
+    {
+        return new static();
     }
 
     // Magic getter for dynamic attributes
@@ -125,16 +133,14 @@ class Model extends Database
     }
 
     // Where method for querying with conditions
-    public static function where(string $column, string $operator, $value): array
+    public function where(string $column, string $operator, $value): static
     {
-        $table = static::$table;
-
-        // Prepare the query with the condition
-        $query = "SELECT * FROM {$table} WHERE {$column} {$operator} :value";
-        $results = (new static())->query($query, ['value' => $value])->fetchAll();
-
-        // Return an array of Model instances
-        return array_map(fn($result) => new static($result), $results);
+        $this->queryConditions[] = [
+            'column' => $column,
+            'operator' => $operator,
+            'value' => $value
+        ];
+        return $this;
     }
 
     // Order by a specific column
@@ -180,5 +186,59 @@ class Model extends Database
         $results = (new static())->query($query, ['value' => $value])->fetchAll();
 
         return array_map(fn($result) => new static($result), $results);
+    }
+    public function get(): array
+    {
+        $table = static::$table;
+        $query = "SELECT * FROM {$table}";
+
+        // Add WHERE conditions dynamically
+        if (!empty($this->queryConditions)) {
+            $whereClauses = array_map(fn($condition) => "{$condition['column']} {$condition['operator']} :{$condition['column']}", $this->queryConditions);
+            $query .= " WHERE " . implode(" AND ", $whereClauses);
+        }
+
+        // Add GROUP BY if set
+        if (!empty($this->groupBy)) {
+            $query .= " GROUP BY " . implode(', ', $this->groupBy);
+        }
+
+        // Prepare values for binding
+        $params = [];
+        foreach ($this->queryConditions as $condition) {
+            $params[$condition['column']] = $condition['value'];
+        }
+
+        // Execute the query
+        $results = $this->query($query, $params)->fetchAll();
+
+        // Remove excluded columns if any
+        if (!empty($this->excludedColumns)) {
+            $results = array_map(function ($result) {
+                return array_diff_key($result, array_flip($this->excludedColumns));
+            }, $results);
+        }
+
+        // Return an array of model instances
+        return array_map(fn($result) => new static($result), $results);
+    }
+
+    public function first(): ?static
+    {
+        $results = $this->get();
+        return $results[0] ?? null;
+    }
+
+    // Group by a specific column
+    public function groupBy(string $column): static
+    {
+        $this->groupBy[] = $column;
+        return $this;
+    }
+
+    public function except(array $columns): static
+    {
+        $this->excludedColumns = $columns;
+        return $this;
     }
 }

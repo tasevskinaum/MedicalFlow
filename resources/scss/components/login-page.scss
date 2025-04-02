@@ -35,9 +35,12 @@
             }
           }
           .brand {
-            h2 {
-              text-align: center;
-              text-transform: uppercase;
+            & > a {
+              color: var.$text-color-base;
+              h2 {
+                text-align: center;
+                text-transform: uppercase;
+              }
             }
           }
           & > .wrapper {

@@ -21,9 +21,9 @@
                             Edit Admin
                         </span>
                     </div>
-                    <div class="create-admin">
+                    <div class="create-form-layout">
                         <h1>Edit Doctor Profile</h1>
-                        <form id="create-admin-form" action="/doctors/update/<?= $user->id ?>" method="POST">
+                        <form action="/doctors/update/<?= $user->id ?>" method="POST">
                             <div class="form-control">
                                 <label for="name">Name</label>
                                 <input type="text" name="name" id="name" value="<?= old('name', $user->name) ?>">

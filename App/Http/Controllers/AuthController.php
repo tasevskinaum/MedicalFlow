@@ -31,7 +31,9 @@ class AuthController extends Controller
             return redirect('/login');
         }
 
-        $user = User::where('email', '=', $data['email'])[0] ?? null;
+        $user = User::queryBuilder()
+            ->where('email', '=', $data['email'])
+            ->first() ?? null;
         if (!$user || !password_verify($data['password'], $user->password)) {
             Session::flash('error', 'Invalid email or password.');
 
@@ -50,7 +52,7 @@ class AuthController extends Controller
     public function destroy()
     {
         Session::destroy();
-        // Session::flash('success', 'You have been logged out.');
-        return redirect('/login'); // Using return to ensure the flow ends
+        Session::flash('success', 'You have been logged out.');
+        return redirect('/login');
     }
 }

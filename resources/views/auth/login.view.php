@@ -14,7 +14,9 @@
                     </div>
                     <div class="side right-side">
                         <div class="brand">
-                            <h2>clinic manager</h2>
+                            <a href="/">
+                                <h2>Medical Flow</h2>
+                            </a>
                         </div>
                         <div class="wrapper">
                             <div class="form-container">
@@ -42,6 +44,15 @@
             </div>
         </div>
     </div>
+    <?php if (\Core\Session::has('success')): ?>
+        <div id="success-message" data-message="<?= \Core\Session::getFlash('success') ?>" style="display: none;"></div>
+    <?php endif; ?>
+    <?php if (\Core\Session::has('unsuccess')): ?>
+        <div id="unsuccess-message" data-message="<?= \Core\Session::getFlash('unsuccess') ?>" style="display: none;"></div>
+    <?php endif; ?>
+
+    <?php require_once BASE_PATH . '/resources/views/partials/_script.view.php' ?>
+    <script type="module" src="/resources/js/alert/success-unsucsess.js"></script>
 </body>
 
 </html>

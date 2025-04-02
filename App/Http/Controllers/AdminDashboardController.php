@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Core\Session;
-
 class AdminDashboardController extends Controller
 {
     public function index()

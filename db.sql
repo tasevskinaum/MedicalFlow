@@ -20,7 +20,7 @@ CREATE TABLE users (
 );
 
 INSERT INTO users(role_id, name, username, email, password)
-VALUES (1, "Naum Tasevski", "tasevskinaum", "tasevskinaum@yahoo.com", "$2y$10$MECK5MRpIDVQtafi.O4gxuEstzDkyyzz2lc3.HK2P8bmHCJ7p0m0W");
+VALUES (1, "Naum Tasevski", "tasevskinaum", "tasevskinaum@yahoo.com", "$2y$10$oyGjyFRsDCZD8vxb4kc6beNLC/TqL8Q5Gvx2aIXYr2etVKVZCAa.y");
 
 CREATE TABLE doctor_profile(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -29,4 +29,33 @@ CREATE TABLE doctor_profile(
 	phone_number VARCHAR(16),
 	is_completed BOOLEAN DEFAULT 0,
 	CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+CREATE TABLE doctor_schedules (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED,
+    date DATE NOT NULL,
+    time_from TIME NOT NULL,
+    time_to TIME NOT NULL,
+    CONSTRAINT fk_user_1 FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+CREATE TABLE patients(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(32) NOT NULL,
+    last_name VARCHAR(32) NOT NULL,
+    personal_no VARCHAR(13) NOT NULL,
+    phone_number VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE doctor_appointments (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    doctor_schedule_id INT UNSIGNED,
+    time TIME NOT NULL,
+    is_booked BOOLEAN DEFAULT 0,
+    patient_id INT UNSIGNED,
+    note TEXT,
+    diagnosis TEXT,
+    CONSTRAINT fk_doctor_schedule FOREIGN KEY(doctor_schedule_id) REFERENCES doctor_schedules(id),
+    CONSTRAINT fk_patient FOREIGN KEY(patient_id) REFERENCES patients(id)
 );

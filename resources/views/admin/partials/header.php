@@ -4,8 +4,7 @@
         <div class="profile-menu">
             <img id="user-profile-picture" src="/storage/images/user/profile-picture/user_tasevskinaum.jpg" alt="">
             <div class="user-dropdown-menu">
-                <a href="profile.php">Profile</a>
-                <a href="settings.php">Settings</a>
+                <a href="">Profile</a>
             </div>
         </div>
         <div class="logout-button">

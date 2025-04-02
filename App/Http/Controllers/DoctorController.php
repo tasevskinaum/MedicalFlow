@@ -13,10 +13,14 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctorRole = Role::where('name', '=', 'doctor')[0];
+        $doctorRole = Role::queryBuilder()
+            ->where('name', '=', 'doctor')
+            ->first();
 
         return view('doctor.manage-doctor.index', [
-            'doctors' => User::where('role_id', '=', $doctorRole->id)
+            'doctors' => User::queryBuilder()
+                ->where('role_id', '=', $doctorRole->id)
+                ->get()
         ]);
     }
 
@@ -48,7 +52,9 @@ class DoctorController extends Controller
         }
 
         $user = new User();
-        $user->role_id = Role::where('name', '=', 'doctor')[0]->id;
+        $user->role_id = Role::queryBuilder()
+            ->where('name', '=', 'doctor')
+            ->first()->id;
         $user->name = $data['name'];
         $user->username = $data['username'];
         $user->email = $data['email'];
@@ -117,7 +123,10 @@ class DoctorController extends Controller
             return redirect('/doctors');
         }
 
-        DoctorProfile::where('user_id', '=', $user->id)[0]->delete();
+        DoctorProfile::queryBuilder()
+            ->where('user_id', '=', $user->id)
+            ->first()
+            ->delete();
 
         $user->delete();
 

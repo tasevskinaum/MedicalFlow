@@ -21,9 +21,9 @@
                             Create Doctor
                         </span>
                     </div>
-                    <div class="create-admin">
+                    <div class="create-form-layout">
                         <h1>Add doctor to system</h1>
-                        <form id="create-doctor-form" action="/doctors/store" method="POST">
+                        <form action="/doctors/store" method="POST">
                             <div class="form-control">
                                 <label for="name">Name</label>
                                 <input type="text" name="name" id="name" value="<?= old('name') ?>">

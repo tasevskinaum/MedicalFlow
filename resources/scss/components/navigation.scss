@@ -123,7 +123,18 @@
       }
     }
     .actions {
-      .request-an-appointment {
+      display: flex;
+      & > * {
+        &:not(:last-child) {
+          margin-right: 10px;
+          @include mix.laptop-m-styles {
+            margin-right: 0;
+            margin-bottom: 30px;
+          }
+        }
+      }
+      .request-an-appointment,
+      .login {
         border: 1px solid #1b3f73;
         border-radius: 33px;
         padding: 7px;
@@ -147,6 +158,9 @@
         @include mix.laptop-m-styles {
           border-width: 2px;
         }
+      }
+      @include mix.laptop-m-styles {
+        flex-direction: column;
       }
     }
     @include mix.laptop-m-styles {

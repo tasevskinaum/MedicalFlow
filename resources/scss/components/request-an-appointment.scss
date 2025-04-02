@@ -1,0 +1,23 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.request-an-appointment-main {
+  @extend %container;
+  height: calc(100vh - 65px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .request-an-appointment {
+    flex: 0 0 40%;
+    @include mix.tablet-styles {
+      flex-basis: 80%;
+    }
+    @include mix.mobile-l-styles {
+      flex-basis: 100%;
+    }
+  }
+  @include mix.laptop-m-styles {
+    height: calc(100vh - 58.97px);
+  }
+}

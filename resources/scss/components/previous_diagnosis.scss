@@ -1,0 +1,33 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.previous-diagnosis {
+  .title {
+    margin-bottom: 10px;
+    h2 {
+      font-size: 18px;
+      color: #0000ff;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+  }
+  .body {
+    .diagnosis {
+      background-color: white;
+      border-radius: 10px;
+      padding: 14px;
+      & > div {
+        &.date {
+          font-weight: bold;
+        }
+        &:not(:last-child) {
+          margin-bottom: 5px;
+        }
+      }
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

@@ -39,7 +39,6 @@ class Session
     {
         session_start();
         session_unset();
-        session_destroy();
     }
 
     public static function flash(string $key, $value): void

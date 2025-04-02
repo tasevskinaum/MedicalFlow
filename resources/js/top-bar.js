@@ -1,4 +1,3 @@
-// ON CLICK PROFIL PICTURE SHOW DROPDOWN MENU
 document.addEventListener('DOMContentLoaded', () => {
     const profilePicture = document.querySelector('#user-profile-picture');
     const dropdownMenu = document.querySelector('.user-dropdown-menu');
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// SCRIPT FOR TIME IN BAR
 function updateDateTime() {
     const now = new Date();
 

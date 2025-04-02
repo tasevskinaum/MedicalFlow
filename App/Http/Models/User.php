@@ -12,6 +12,8 @@ class User extends Model
 
     public function isRole(string $role): bool
     {
-        return $this->role_id == Role::where('name', '=', $role)[0]->id;
+        $roleModel = Role::queryBuilder()->where('name', '=', $role)->first();
+
+        return $roleModel ? $this->role_id == $roleModel->id : false;
     }
 }

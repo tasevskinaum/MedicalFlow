@@ -1,5 +1,5 @@
 <aside class="sidebar">
-    <a href="" class="sidebar-logo">
+    <a href="/dashboard" class="sidebar-logo">
         <img src="/storage/images/clinic-logo.png" alt="">
     </a>
     <button class="close-btn">
@@ -28,24 +28,22 @@
                 </li>
             <?php }
             ?>
-            <li class="sidebar-nav-item">
-                <a href="" class="sidebar-link">
-                    <span>Users</span>
-                    <i class='bx bx-user'></i>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="" class="sidebar-link">
-                    <span>Users</span>
-                    <i class='bx bx-user'></i>
-                </a>
-            </li>
-            <li class="sidebar-nav-item">
-                <a href="" class="sidebar-link">
-                    <span>Users</span>
-                    <i class='bx bx-user'></i>
-                </a>
-            </li>
+            <?php
+            if (!(auth()->user()->role_id != 3)) { ?>
+                <li class="sidebar-nav-item">
+                    <a href="/doctors/<?= auth()->user()->id ?>/schedule" class="sidebar-link">
+                        <span>Work Schedule</span>
+                        <i class='bx bx-calendar-check'></i>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/appointments" class="sidebar-link">
+                        <span>Upcoming Appointments</span>
+                        <i class='bx bx-time-five'></i>
+                    </a>
+                </li>
+            <?php }
+            ?>
         </ul>
     </nav>
     <div class="sidebar-footer">

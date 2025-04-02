@@ -1,0 +1,10 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.custom-error-alert {
+  background-color: rgb(255, 0, 0);
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}

@@ -7,9 +7,11 @@ use Core\Middleware\BaseMiddleware;
 
 class AdminMiddleware extends BaseMiddleware
 {
-    public function handle($request, $next)
+    public function handle($request, callable $next)
     {
-        $admin = Role::where('name', '=', 'admin')[0];
+        $admin = Role::queryBuilder()
+            ->where('name', '=', 'admin')
+            ->first();
 
         if (auth()->user()->role_id != $admin->id) {
             return redirect('/dashboard');

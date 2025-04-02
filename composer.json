@@ -9,7 +9,8 @@
       "config/app.php",
       "functions.php",
       "config/database.php",
-      "routes/web.php"
+      "routes/web.php",
+      "routes/api.php"
     ]
   },
   "authors": [

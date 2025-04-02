@@ -70,10 +70,11 @@ class Validator extends Database
                 }
                 break;
             case 'exists':
-                if (!$this->exists($param, $value)) {
+                if (!empty($value) && !$this->exists($param, $value)) {
                     $this->addError($field, "{$field} does not exist.");
                 }
                 break;
+
             case 'unique':
                 [$table, $column, $exceptId] = array_pad(explode(',', $param), 3, null);
                 if ($this->unique($table, $column, $value, $exceptId)) {
@@ -124,9 +125,51 @@ class Validator extends Database
                     $this->addError($field, "{$field} must be a date before {$param}.");
                 }
                 break;
+
             case 'regex':
-                if (!preg_match("/{$param}/", $value)) {
+                if (@preg_match($param, '') === false) {
+                    throw new \Exception("Invalid regex pattern provided for validation: {$param}");
+                }
+                if (!preg_match($param, $value)) {
                     $this->addError($field, "{$field} format is invalid.");
+                }
+
+                break;
+
+            case 'after_or_equal':
+                if (strtotime($value) < strtotime($param)) {
+                    $this->addError($field, "{$field} must be a date after or equal to {$param}.");
+                }
+                break;
+            case 'before_or_equal':
+                if (strtotime($value) > strtotime($param)) {
+                    $this->addError($field, "{$field} must be a date before or equal to {$param}.");
+                }
+                break;
+
+
+            case 'time':
+                if (!preg_match('/^(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d)?$/', $value)) {
+                    $this->addError($field, "{$field} must be a valid time (HH:MM or HH:MM:SS).");
+                }
+                break;
+
+            case 'week_day':
+                $validDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                if (!in_array(ucfirst(strtolower($value)), $validDays)) {
+                    $this->addError($field, "{$field} must be a valid day of the week.");
+                }
+                break;
+            case 'time_range':
+                if (!preg_match('/^(?:[01]\d|2[0-3]):[0-5]\d$/', $value)) {
+                    $this->addError($field, "{$field} must be a valid time (HH:MM).");
+                }
+                break;
+
+            case 'after_time':
+                $comparisonField = $param;
+                if (isset($this->data[$comparisonField]) && strtotime($value) <= strtotime($this->data[$comparisonField])) {
+                    $this->addError($field, "{$field} must be after {$comparisonField}.");
                 }
                 break;
             default:
@@ -145,13 +188,20 @@ class Validator extends Database
         $this->errors[$field][] = $message;
     }
 
-    public function exists(string $table, $value): bool
+    public function exists(string $rule, $value): bool
     {
-        $query = "SELECT COUNT(*) FROM {$table} WHERE {$table}.id = :value";
+        if (empty($value)) {
+            return false; // Prevent checking NULL values
+        }
+
+        [$table, $column] = explode(',', $rule);
+
+        $query = "SELECT COUNT(*) FROM {$table} WHERE {$column} = :value";
         $statement = $this->query($query, ['value' => $value]);
 
         return $statement->fetchColumn() > 0;
     }
+
 
     public function unique(string $table, string $column, $value, int $excludeId = null): bool
     {

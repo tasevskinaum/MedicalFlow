@@ -102,7 +102,6 @@ class Router
             call_user_func_array([$controller, $function], $args);
         };
 
-        // Build the middleware chain
         foreach (array_reverse($middlewareStack) as $middleware) {
             $next = function ($request) use ($middleware, $next) {
                 $middlewareInstance = new $middleware();
@@ -110,7 +109,6 @@ class Router
             };
         }
 
-        // Execute the middleware chain
         $next($request);
     }
 }

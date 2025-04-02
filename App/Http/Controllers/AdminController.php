@@ -12,10 +12,14 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $adminRole = Role::where('name', '=', 'admin')[0];
+        $adminRole = Role::queryBuilder()
+            ->where('name', '=', 'admin')
+            ->first();
 
         return view('admin.manage-admins.index', [
-            'users' => User::where('role_id', '=', $adminRole->id)
+            'users' => User::queryBuilder()
+                ->where('role_id', '=', $adminRole->id)
+                ->get()
         ]);
     }
 

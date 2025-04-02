@@ -43,7 +43,10 @@
                                     <td data-label="Name"><?php echo $user->name; ?></td>
                                     <td data-label="Email"><?php echo $user->email; ?></td>
                                     <td data-label="Username"><?php echo $user->username; ?></td>
-                                    <td data-label="Role"><?php echo \App\Http\Models\Role::where('id', '=', $user->role_id)[0]->name ?></td>
+                                    <td data-label="Role">
+                                        <?= \App\Http\Models\Role::queryBuilder()->where('id', '=', $user->role_id)->first()->name ?>
+                                    </td>
+
                                     <td data-label="Actions">
                                         <a href="/admins/edit/<?php echo $user->id; ?>" class="btn btn-edit">Edit</a>
                                         <!-- Delete Form -->

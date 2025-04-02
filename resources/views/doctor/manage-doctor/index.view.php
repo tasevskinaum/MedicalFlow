@@ -40,10 +40,10 @@
                         <tbody>
                             <?php foreach ($doctors as $doctor): ?>
                                 <tr>
-                                    <td data-label="Name"><?php echo $doctor->name; ?></td>
+                                    <td data-label="Name"><a href="#"><?php echo $doctor->name; ?></a></td>
                                     <td data-label="Email"><?php echo $doctor->email; ?></td>
                                     <td data-label="Username"><?php echo $doctor->username; ?></td>
-                                    <td data-label="Role"><?php echo \App\Http\Models\Role::where('id', '=', $doctor->role_id)[0]->name ?></td>
+                                    <td data-label="Role"><?= \App\Http\Models\Role::queryBuilder()->where('id', '=', $doctor->role_id)->first()->name ?></td>
                                     <td data-label="Actions">
                                         <a href="/doctors/edit/<?php echo $doctor->id; ?>" class="btn btn-edit">Edit</a>
                                         <!-- Delete Form -->

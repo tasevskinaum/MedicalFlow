@@ -26,7 +26,7 @@ a {
   text-decoration: none;
 }
 
-.login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
+.request-an-appointment-main, .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -34,12 +34,12 @@ a {
   padding-right: 12px;
 }
 @media (max-width: 1024px) {
-  .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
+  .request-an-appointment-main, .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
     width: 90%;
   }
 }
 @media (max-width: 768px) {
-  .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
+  .request-an-appointment-main, .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
     width: 100%;
   }
 }
@@ -184,33 +184,56 @@ h3 {
     align-items: center;
   }
 }
-.navigation-container .navigation-wrapper .actions .request-an-appointment {
+.navigation-container .navigation-wrapper .actions {
+  display: flex;
+}
+.navigation-container .navigation-wrapper .actions > *:not(:last-child) {
+  margin-right: 10px;
+}
+@media (max-width: 1024px) {
+  .navigation-container .navigation-wrapper .actions > *:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+}
+.navigation-container .navigation-wrapper .actions .request-an-appointment,
+.navigation-container .navigation-wrapper .actions .login {
   border: 1px solid #1b3f73;
   border-radius: 33px;
   padding: 7px;
   transition: 0.3s all ease;
   text-align: center;
 }
-.navigation-container .navigation-wrapper .actions .request-an-appointment:hover {
+.navigation-container .navigation-wrapper .actions .request-an-appointment:hover,
+.navigation-container .navigation-wrapper .actions .login:hover {
   background-color: #1b3f73;
 }
-.navigation-container .navigation-wrapper .actions .request-an-appointment:hover .btn {
+.navigation-container .navigation-wrapper .actions .request-an-appointment:hover .btn,
+.navigation-container .navigation-wrapper .actions .login:hover .btn {
   color: #ebeef4;
 }
-.navigation-container .navigation-wrapper .actions .request-an-appointment .btn {
+.navigation-container .navigation-wrapper .actions .request-an-appointment .btn,
+.navigation-container .navigation-wrapper .actions .login .btn {
   transition: 0.3s all ease;
   font-size: 18px;
   color: #1b3f73;
 }
 @media (max-width: 1024px) {
-  .navigation-container .navigation-wrapper .actions .request-an-appointment .btn {
+  .navigation-container .navigation-wrapper .actions .request-an-appointment .btn,
+  .navigation-container .navigation-wrapper .actions .login .btn {
     font-size: 24px;
     font-weight: 600;
   }
 }
 @media (max-width: 1024px) {
-  .navigation-container .navigation-wrapper .actions .request-an-appointment {
+  .navigation-container .navigation-wrapper .actions .request-an-appointment,
+  .navigation-container .navigation-wrapper .actions .login {
     border-width: 2px;
+  }
+}
+@media (max-width: 1024px) {
+  .navigation-container .navigation-wrapper .actions {
+    flex-direction: column;
   }
 }
 @media (max-width: 1024px) {
@@ -335,7 +358,10 @@ h3 {
 .login-page .login-container > .wrapper .side.right-side > *:not(:last-child) {
   margin-bottom: 60px;
 }
-.login-page .login-container > .wrapper .side.right-side .brand h2 {
+.login-page .login-container > .wrapper .side.right-side .brand > a {
+  color: #212837;
+}
+.login-page .login-container > .wrapper .side.right-side .brand > a h2 {
   text-align: center;
   text-transform: uppercase;
 }
@@ -755,28 +781,6 @@ h3 {
   transition: 0.15s all ease;
 }
 
-.create-admin > *:not(:last-child) {
-  margin-bottom: 10px;
-}
-.create-admin h1 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 0;
-}
-.create-admin form {
-  width: 30%;
-}
-@media (max-width: 1024px) {
-  .create-admin form {
-    width: 50%;
-  }
-}
-@media (max-width: 768px) {
-  .create-admin form {
-    width: 100%;
-  }
-}
-
 #swal2-html-container {
   color: #232221;
   font-weight: 600;
@@ -809,6 +813,28 @@ h3 {
   max-width: 300px; /* Adjust as needed */
 }
 
+.create-form-layout > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+.create-form-layout h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.create-form-layout form {
+  width: 30%;
+}
+@media (max-width: 1024px) {
+  .create-form-layout form {
+    width: 50%;
+  }
+}
+@media (max-width: 768px) {
+  .create-form-layout form {
+    width: 100%;
+  }
+}
+
 form .form-control:not(:last-child) {
   margin-bottom: 10px;
 }
@@ -817,7 +843,9 @@ form .form-control label {
   font-size: 14px;
   font-weight: 600;
 }
-form .form-control input {
+form .form-control input,
+form .form-control select,
+form .form-control textarea {
   background-color: white;
   border-radius: 7px;
   border: 1px solid rgb(116, 116, 116);
@@ -828,17 +856,25 @@ form .form-control input {
   color: #2d2e32;
   font-weight: 600;
 }
-form .form-control input[type=submit] {
+form .form-control input[type=submit],
+form .form-control select[type=submit],
+form .form-control textarea[type=submit] {
   background-color: #0000ff;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: white;
 }
-form .form-control input[type=submit]:hover {
+form .form-control input[type=submit]:hover,
+form .form-control select[type=submit]:hover,
+form .form-control textarea[type=submit]:hover {
   cursor: pointer;
 }
+form .form-control > button:not(:last-child) {
+  margin-bottom: 10px;
+}
 form .fdb {
+  display: block;
   font-size: 12px;
   top: -4px;
   position: relative;
@@ -846,6 +882,24 @@ form .fdb {
 }
 form .fdb.error {
   color: red;
+}
+form .form-btn {
+  border-radius: 7px;
+  border: 1px solid rgb(116, 116, 116);
+  outline: none;
+  padding: 6px;
+  width: 100%;
+  font-family: "Libre Franklin", sans-serif;
+  color: #2d2e32;
+  font-weight: 600;
+  background-color: #0000ff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: white;
+}
+form .form-btn:hover {
+  cursor: pointer;
 }
 
 .table.responsive {
@@ -951,6 +1005,77 @@ form .fdb.error {
   .table.responsive .btn-delete {
     width: 100%;
   }
+}
+
+.request-an-appointment-main {
+  height: calc(100vh - 65px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.request-an-appointment-main .request-an-appointment {
+  flex: 0 0 40%;
+}
+@media (max-width: 768px) {
+  .request-an-appointment-main .request-an-appointment {
+    flex-basis: 80%;
+  }
+}
+@media (max-width: 425px) {
+  .request-an-appointment-main .request-an-appointment {
+    flex-basis: 100%;
+  }
+}
+@media (max-width: 1024px) {
+  .request-an-appointment-main {
+    height: calc(100vh - 58.97px);
+  }
+}
+
+.write-diagnosis .patient {
+  margin-bottom: 10px;
+}
+.write-diagnosis .patient > div {
+  font-size: 16px;
+  font-weight: bold;
+}
+.write-diagnosis .patient > div > span {
+  font-weight: normal;
+}
+.write-diagnosis .form form .form-control label {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.previous-diagnosis .title {
+  margin-bottom: 10px;
+}
+.previous-diagnosis .title h2 {
+  font-size: 18px;
+  color: #0000ff;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.previous-diagnosis .body .diagnosis {
+  background-color: white;
+  border-radius: 10px;
+  padding: 14px;
+}
+.previous-diagnosis .body .diagnosis > div.date {
+  font-weight: bold;
+}
+.previous-diagnosis .body .diagnosis > div:not(:last-child) {
+  margin-bottom: 5px;
+}
+.previous-diagnosis .body .diagnosis:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.custom-error-alert {
+  background-color: rgb(255, 0, 0);
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
 }
 
 /*# sourceMappingURL=main.css.map */

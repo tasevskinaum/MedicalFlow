@@ -9,8 +9,14 @@
 @use "./admin-dashboard/sidebar.scss";
 @use "./admin-dashboard/header.scss";
 
-@use "./admin-dashboard/manage-admin/create.scss";
 //
 @use "./sweetalert.scss";
 @use "./form.scss";
 @use "./table.scss";
+
+@use "./request-an-appointment.scss";
+
+@use "./write-diagnosis.scss";
+@use "./previous_diagnosis.scss";
+
+@use "./alert.scss";
