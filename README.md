@@ -43,10 +43,10 @@ Installation:
    php -S localhost:8000
 
 3. Import the database:
-   Import the SQL file (in /database/medicalflow.sql) into your MySQL server.
+   Import the SQL file (in /database/db.sql) into your MySQL server.
 
 4. Configure the database:
-   Edit the databases.php file with your DB credentials.
+   Edit the config/databases.php file with your DB credentials.
 
 5. Done:
    Visit http://localhost:8000 in your browser.
