@@ -2,7 +2,7 @@
 
 MedicalFlow is a lightweight clinic management system built using vanilla PHP with a clean and modular MVC (Model-View-Controller) architecture. Designed for small to mid-sized clinics, it streamlines daily operations like appointment requests, user and schedule management, and patient record tracking.
 
-The system features role-based access: Admins and Doctors can securely log in to manage the clinic via dedicated dashboards, while Patients can request appointments without logging in. MedicalFlow leverages Composer for autoloading and package management, making it maintainable, scalable, and aligned with modern PHP development practices.|
+The system features role-based access: Admins and Doctors can securely log in to manage the clinic via dedicated dashboards, while Patients can request appointments without logging in. MedicalFlow leverages Composer for autoloading and package management, making it maintainable, scalable, and aligned with modern PHP development practices.
 
 ----------------------------------------
 ✨ Features
