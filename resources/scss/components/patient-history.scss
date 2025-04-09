@@ -1,0 +1,49 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.patient-history {
+  & > * {
+    margin-bottom: 10px;
+  }
+  .title {
+    h2 {
+      font-size: 20px;
+      margin-bottom: 0;
+      letter-spacing: 2px;
+    }
+  }
+  .patient-info {
+    & > div {
+      font-weight: 600;
+    }
+  }
+  .history {
+    & > div:not(.title) {
+      background-color: white;
+      border-radius: 7px;
+      padding: 7px;
+      position: relative;
+      font-size: 14px;
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+      & > div:first-child {
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .actions {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+      }
+    }
+    .title {
+      h3 {
+        font-size: 14px;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+      }
+    }
+  }
+}

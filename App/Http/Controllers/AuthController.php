@@ -45,7 +45,6 @@ class AuthController extends Controller
 
         Session::set('user', $user);
 
-        // Session::flash('success', 'Login successful.');
         return redirect('/dashboard');
     }
 

@@ -26,7 +26,7 @@ a {
   text-decoration: none;
 }
 
-.request-an-appointment-main, .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
+.request-an-appointment-main .wrapper, .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -34,12 +34,12 @@ a {
   padding-right: 12px;
 }
 @media (max-width: 1024px) {
-  .request-an-appointment-main, .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
+  .request-an-appointment-main .wrapper, .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
     width: 90%;
   }
 }
 @media (max-width: 768px) {
-  .request-an-appointment-main, .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
+  .request-an-appointment-main .wrapper, .login-page .login-container, .home-page-hero-section .home-page-hero-section-wrapper {
     width: 100%;
   }
 }
@@ -1008,26 +1008,29 @@ form .form-btn:hover {
 }
 
 .request-an-appointment-main {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("/storage/images/request-appointment-bg.jfif") center/cover no-repeat;
+}
+.request-an-appointment-main .wrapper {
   height: calc(100vh - 65px);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.request-an-appointment-main .request-an-appointment {
+.request-an-appointment-main .wrapper .request-an-appointment {
   flex: 0 0 40%;
 }
 @media (max-width: 768px) {
-  .request-an-appointment-main .request-an-appointment {
+  .request-an-appointment-main .wrapper .request-an-appointment {
     flex-basis: 80%;
   }
 }
 @media (max-width: 425px) {
-  .request-an-appointment-main .request-an-appointment {
+  .request-an-appointment-main .wrapper .request-an-appointment {
     flex-basis: 100%;
   }
 }
 @media (max-width: 1024px) {
-  .request-an-appointment-main {
+  .request-an-appointment-main .wrapper {
     height: calc(100vh - 58.97px);
   }
 }
@@ -1076,6 +1079,104 @@ form .form-btn:hover {
   padding: 5px;
   border-radius: 5px;
   color: white;
+}
+
+.patient-title h2 {
+  font-size: 20px;
+  margin-bottom: 0;
+  letter-spacing: 2px;
+}
+
+.patient-search input {
+  display: block;
+  width: 100%;
+  border-radius: 7px;
+  border: 1px solid grey;
+  padding: 7px;
+}
+.patient-search input:focus {
+  outline: none;
+}
+.patient-search input::placeholder {
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+ul.patients {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+ul.patients > li.patient {
+  padding: 5px;
+}
+ul.patients > li.patient:hover {
+  background-color: rgb(220, 220, 220);
+}
+ul.patients > li.patient:not(:last-child) {
+  border-bottom: 1px solid black;
+}
+ul.patients > li.patient > a {
+  color: #212837;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+ul.patients > li.patient > a div {
+  flex-basis: 50%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+ul.patients > li.patient > a div:last-child {
+  display: flex;
+}
+ul.patients > li.patient > a div:last-child span {
+  flex-basis: 50%;
+  display: block;
+}
+ul.patients > li.patient > a div:last-child span:first-child {
+  margin-right: 10px;
+}
+ul.patients > li.patient > a div:last-child span:last-child {
+  text-align: right;
+}
+
+.patient-history > * {
+  margin-bottom: 10px;
+}
+.patient-history .title h2 {
+  font-size: 20px;
+  margin-bottom: 0;
+  letter-spacing: 2px;
+}
+.patient-history .patient-info > div {
+  font-weight: 600;
+}
+.patient-history .history > div:not(.title) {
+  background-color: white;
+  border-radius: 7px;
+  padding: 7px;
+  position: relative;
+  font-size: 14px;
+}
+.patient-history .history > div:not(.title):not(:last-child) {
+  margin-bottom: 10px;
+}
+.patient-history .history > div:not(.title) > div:first-child {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.patient-history .history > div:not(.title) .actions {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+.patient-history .history .title h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
 }
 
 /*# sourceMappingURL=main.css.map */

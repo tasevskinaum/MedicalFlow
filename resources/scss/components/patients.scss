@@ -1,0 +1,73 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+@use "sass:math";
+
+.patient-title {
+  h2 {
+    font-size: 20px;
+    margin-bottom: 0;
+    letter-spacing: 2px;
+  }
+}
+
+.patient-search {
+  input {
+    display: block;
+    width: 100%;
+    border-radius: 7px;
+    border: 1px solid grey;
+    padding: 7px;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+ul {
+  &.patients {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+    & > li {
+      &.patient {
+        padding: 5px;
+        &:hover {
+          background-color: rgb(220, 220, 220);
+        }
+        &:not(:last-child) {
+          border-bottom: 1px solid black;
+        }
+        & > a {
+          color: var.$text-color-base;
+          font-weight: 600;
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          div {
+            flex-basis: 50%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            &:last-child {
+              display: flex;
+              span {
+                flex-basis: 50%;
+                display: block;
+                &:first-child {
+                  margin-right: 10px;
+                }
+                &:last-child {
+                  text-align: right;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

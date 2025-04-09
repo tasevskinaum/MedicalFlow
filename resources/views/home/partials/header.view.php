@@ -9,9 +9,7 @@
             <span class="bar bar___"></span>
         </button>
         <div class="navigation-wrapper">
-            <nav class="main-navigation">
-
-            </nav>
+            <nav class="main-navigation"></nav>
             <div class="actions">
                 <div class="request-an-appointment">
                     <a href="/request-an-appointment" class="btn">Request an appointment</a>

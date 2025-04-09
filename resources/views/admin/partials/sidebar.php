@@ -1,3 +1,8 @@
+<?php
+
+use App\Http\Models\Role;
+
+?>
 <aside class="sidebar">
     <a href="/dashboard" class="sidebar-logo">
         <img src="/storage/images/clinic-logo.png" alt="">
@@ -9,7 +14,7 @@
     <nav>
         <ul class="sidebar-nav">
             <?php
-            if (!(auth()->user()->role_id != 1)) { ?>
+            if (Role::queryBuilder()->where('id', '=', auth()->user()->role_id)->first()->name == 'super_admin') { ?>
                 <li class="sidebar-nav-item">
                     <a href="/admins" class="sidebar-link">
                         <span>Manage Admins</span>
@@ -19,7 +24,7 @@
             <?php }
             ?>
             <?php
-            if (!(auth()->user()->role_id != 2)) { ?>
+            if (Role::queryBuilder()->where('id', '=', auth()->user()->role_id)->first()->name == 'admin') { ?>
                 <li class="sidebar-nav-item">
                     <a href="/doctors" class="sidebar-link">
                         <span>Manage Doctors</span>
@@ -29,7 +34,7 @@
             <?php }
             ?>
             <?php
-            if (!(auth()->user()->role_id != 3)) { ?>
+            if (Role::queryBuilder()->where('id', '=', auth()->user()->role_id)->first()->name == 'doctor') { ?>
                 <li class="sidebar-nav-item">
                     <a href="/doctors/<?= auth()->user()->id ?>/schedule" class="sidebar-link">
                         <span>Work Schedule</span>
@@ -40,6 +45,12 @@
                     <a href="/appointments" class="sidebar-link">
                         <span>Upcoming Appointments</span>
                         <i class='bx bx-time-five'></i>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/patients" class="sidebar-link">
+                        <span>Patients</span>
+                        <i class='bx bxs-user-rectangle'></i>
                     </a>
                 </li>
             <?php }

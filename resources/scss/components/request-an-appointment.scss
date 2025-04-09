@@ -3,21 +3,25 @@
 @use "sass:math";
 
 .request-an-appointment-main {
-  @extend %container;
-  height: calc(100vh - 65px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .request-an-appointment {
-    flex: 0 0 40%;
-    @include mix.tablet-styles {
-      flex-basis: 80%;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url("/storage/images/request-appointment-bg.jfif") center/cover no-repeat;
+  .wrapper {
+    @extend %container;
+    height: calc(100vh - 65px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .request-an-appointment {
+      flex: 0 0 40%;
+      @include mix.tablet-styles {
+        flex-basis: 80%;
+      }
+      @include mix.mobile-l-styles {
+        flex-basis: 100%;
+      }
     }
-    @include mix.mobile-l-styles {
-      flex-basis: 100%;
+    @include mix.laptop-m-styles {
+      height: calc(100vh - 58.97px);
     }
-  }
-  @include mix.laptop-m-styles {
-    height: calc(100vh - 58.97px);
   }
 }
