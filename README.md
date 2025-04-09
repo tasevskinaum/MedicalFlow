@@ -65,7 +65,6 @@ Installation:
 ----------------------------------------
 📸 Screenshots
 
-Add screenshots of:
 - Login/Register page
 https://imgur.com/HpWa0Rc
 
