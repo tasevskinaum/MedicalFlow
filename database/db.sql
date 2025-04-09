@@ -19,8 +19,12 @@ CREATE TABLE users (
     CONSTRAINT fk_role FOREIGN KEY(role_id) REFERENCES roles(id)
 );
 
-INSERT INTO users(role_id, name, username, email, password)
-VALUES (1, "Naum Tasevski", "tasevskinaum", "tasevskinaum@yahoo.com", "$2y$10$oyGjyFRsDCZD8vxb4kc6beNLC/TqL8Q5Gvx2aIXYr2etVKVZCAa.y");
+INSERT INTO users (role_id, name, username, email, password)
+VALUES 
+    (1, "Naum Tasevski", "tasevskinaum", "tasevskinaum@yahoo.com", "$2y$10$oyGjyFRsDCZD8vxb4kc6beNLC/TqL8Q5Gvx2aIXYr2etVKVZCAa.y"),
+    (2, "Admin Admin", "admin", "admin@admin.com", "$2y$10$dzGPLdH5S.wpLwr6rl.N2ufdnR0TvWeUlWo5Sjp7vBzb5uIgDGyBC"),
+    (3, "Doctor Doctor", "doctor", "doctor@doctor.com", "$2y$10$mpFwYR9UD0edrBHVCW2wUu9PsSVMVFeWY2ublqVMekwOOrbofdDxK");
+
 
 CREATE TABLE doctor_profile(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
